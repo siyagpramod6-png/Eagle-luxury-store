@@ -18,7 +18,80 @@ grid.addEventListener('click',e=>{const id=e.target.dataset.add;if(id){bag.push(
 document.getElementById('bagItems').addEventListener('click',e=>{if(e.target.dataset.remove!==undefined){bag.splice(Number(e.target.dataset.remove),1);updateBag()}});
 function closeBag(){document.body.classList.remove('bag-open');document.getElementById('bagDrawer').setAttribute('aria-hidden','true')}
 document.getElementById('openBag').addEventListener('click',()=>{document.body.classList.add('bag-open');document.getElementById('bagDrawer').setAttribute('aria-hidden','false')});document.getElementById('closeBag').addEventListener('click',closeBag);document.getElementById('backdrop').addEventListener('click',closeBag);
-render();updateBag();
-async function checkout() {
-  alert("Checkout is being connected. Please wait.");
+render();function updateBag() {
+  const total = bag.reduce((s, p) => s + p.price, 0);
+
+  document.getElementById('bagCount').textContent = bag.length;
+  document.getElementById('subtotal').textContent = money(total);
+
+  document.getElementById('bagItems').innerHTML = bag.length
+    ? bag.map((p, i) => `
+      <div class="bag-line">
+        <span>${p.name}<br><small>${p.gender.toUpperCase()}</small></span>
+        <span>${money(p.price)}
+          <button data-remove="${i}">×</button>
+        </span>
+      </div>
+    `).join('') + `
+      <button onclick="checkout()" class="checkout-button"
+        style="width:100%;padding:16px;background:#171717;color:white;margin-top:20px;border:0;cursor:pointer">
+        PROCEED TO CHECKOUT
+      </button>
+    `
+    : '<p class="empty-bag">Your bag is empty.</p>';
+}async function checkout() {
+  if (!bag.length) {
+    alert("Your bag is empty");
+    return;
+  }
+
+  const total = bag.reduce((s, p) => s + p.price, 0);
+
+  try {
+    const response = await fetch("/.netlify/functions/create-order", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        amount: Math.round(total * 100)
+      })
+    });
+
+    const order = await response.json();
+
+    if (!response.ok || !order.id) {
+      throw new Error(order.error || "Order creation failed");
+    }
+
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+
+    script.onload = () => {
+      const options = {
+        key: "rzp_test_U3JOkEhr3Yialm",
+        amount: order.amount,
+        currency: "INR",
+        name: "EAGLE",
+        description: "EAGLE Winter Collection",
+        order_id: order.id,
+
+        handler: function (response) {
+          alert("Payment submitted: " + response.razorpay_payment_id);
+        },
+
+        theme: {
+          color: "#C5A572"
+        }
+      };
+
+      const payment = new Razorpay(options);
+      payment.open();
+    };
+
+    script.onerror = () => alert("Payment system could not load");
+    document.body.appendChild(script);
+
+  } catch (error) {
+    alert(error.message);
+  }
 }
+
