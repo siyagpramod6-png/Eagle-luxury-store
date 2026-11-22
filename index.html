@@ -1,42 +1,84 @@
-EAGLE WINTER 2026 · FREE SHIPPING ABOVE ₹2,999
-☰EAGLE®THE ART OF EVERYDAY LUXURY
-SHOP ALLMENWOMENOUR STORY
-BAG 0
-THE WINTER COLLECTION · 2026
-Winter, with
-a finer edge.
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171512">
+  <title>EAGLE® | The Art of Everyday Luxury</title>
+  <meta name="description" content="Discover the EAGLE Winter 2026 collection for men and women.">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <div class="announcement">EAGLE WINTER 2026 <span>·</span> FREE SHIPPING ABOVE ₹2,999</div>
+  <header class="site-header">
+    <a class="wordmark" href="#">EAGLE<span>®</span><small>THE ART OF EVERYDAY LUXURY</small></a>
+    <nav aria-label="Main navigation">
+      <a href="#collection" data-filter="all">SHOP ALL</a>
+      <a href="#collection" data-filter="men">MEN</a>
+      <a href="#collection" data-filter="women">WOMEN</a>
+      <a href="#story">OUR STORY</a>
+    </nav>
+    <button class="bag-button" id="openBag">BAG <span id="bagCount">0</span></button>
+  </header>
 
-108 considered layers for colder days. Discover jackets, sweatshirts, hoodies, knits and more for him and her.
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">THE WINTER COLLECTION · 2026</p>
+        <h1>Winter, with<br><em>a finer edge.</em></h1>
+        <p class="intro">108 considered layers for colder days. Discover jackets, sweatshirts, hoodies, knits and more for him and her.</p>
+        <a class="button-link" href="#collection">SHOP THE COLLECTION ↗</a>
+      </div>
+      <div class="hero-image" role="img" aria-label="Winter fashion editorial"></div>
+      <div class="hero-index">EAGLE / WINTER Nº 01</div>
+    </section>
 
-SHOP THE COLLECTION ↗
-EAGLE / WINTER Nº 01
-BUILT FOR THE SEASON
-Warmth meets
-quiet confidence.
+    <section class="manifesto" id="story">
+      <div>
+        <p class="eyebrow">BUILT FOR THE SEASON</p>
+        <h2>Warmth meets<br><em>quiet confidence.</em></h2>
+      </div>
+      <p>Modern winter essentials, thoughtfully selected for everyday comfort and a refined look.</p>
+      <div class="stats"><div><strong>108</strong><span>WINTER STYLES</span></div><div><strong>54</strong><span>MEN'S PICKS</span></div><div><strong>54</strong><span>WOMEN'S PICKS</span></div></div>
+    </section>
 
-Modern winter essentials, thoughtfully selected for everyday comfort and a refined look.
+    <section class="collection" id="collection">
+      <div class="section-heading">
+        <div><p class="eyebrow">THE EAGLE WINTER EDIT</p><h2>Shop the collection</h2></div>
+        <span class="count-label">108 STYLES</span>
+      </div>
+      <div class="toolbar">
+        <div class="filters" role="group" aria-label="Filter products">
+          <button class="filter active" data-filter="all">ALL</button>
+          <button class="filter" data-filter="men">MEN</button>
+          <button class="filter" data-filter="women">WOMEN</button>
+        </div>
+        <div class="tools">
+          <input id="searchInput" type="search" placeholder="Search styles…" aria-label="Search styles">
+          <select id="sortSelect" aria-label="Sort products"><option value="featured">Featured</option><option value="low">Price: Low to high</option><option value="high">Price: High to low</option></select>
+        </div>
+      </div>
+      <div class="product-grid" id="productGrid"></div>
+      <button class="load-more" id="loadMore">LOAD MORE</button>
+    </section>
 
-108 WINTER STYLES54 MEN'S PICKS54 WOMEN'S PICKS
-THE EAGLE WINTER EDIT
-Shop the collection
+    <section class="closing">
+      <p class="eyebrow">THE COLD-WEATHER UNIFORM</p>
+      <h2>Layer well.<br><em>Live well.</em></h2>
+      <p>From statement outerwear to easy everyday layers.</p>
+      <a class="button-link" href="#collection">EXPLORE ALL 108 STYLES ↗</a>
+    </section>
+  </main>
 
-108 styles
+  <footer><a class="wordmark" href="#">EAGLE<span>®</span><small>THE ART OF EVERYDAY LUXURY</small></a><span>© 2026 EAGLE · ALL RIGHTS RESERVED</span><a href="mailto:hello@eagle.example">CONTACT</a></footer>
 
-
-LOAD MORE
-THE COLD-WEATHER UNIFORM
-Layer well.
-Live well.
-
-From statement outerwear to easy everyday layers.
-
-EXPLORE ALL 108 STYLES ↗
-EAGLE®THE ART OF EVERYDAY LUXURY
-© 2026 EAGLE · ALL RIGHTS RESERVED
-
-CONTACT
-Your bag
-
-×
-Your bag is empty.
-Subtotal ₹0
+  <div class="drawer-backdrop" id="backdrop"></div>
+  <aside class="bag-drawer" id="bagDrawer" aria-label="Shopping bag" aria-hidden="true">
+    <div class="drawer-head"><h2>Your bag</h2><button id="closeBag" aria-label="Close bag">×</button></div>
+    <div id="bagItems" class="bag-items"><p class="empty-bag">Your bag is empty.</p></div>
+    <div class="subtotal"><span>Subtotal</span><strong id="subtotal">₹0</strong></div>
+    <p class="checkout-note">Demo store: checkout and online payments are not connected yet.</p>
+  </aside>
+</body>
+</html>
