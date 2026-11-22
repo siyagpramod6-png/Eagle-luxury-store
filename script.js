@@ -19,3 +19,6 @@ document.getElementById('bagItems').addEventListener('click',e=>{if(e.target.dat
 function closeBag(){document.body.classList.remove('bag-open');document.getElementById('bagDrawer').setAttribute('aria-hidden','true')}
 document.getElementById('openBag').addEventListener('click',()=>{document.body.classList.add('bag-open');document.getElementById('bagDrawer').setAttribute('aria-hidden','false')});document.getElementById('closeBag').addEventListener('click',closeBag);document.getElementById('backdrop').addEventListener('click',closeBag);
 render();updateBag();
+async function checkout() {
+  alert("Checkout is being connected. Please wait.");
+}
